@@ -1,6 +1,13 @@
 from cryptography.fernet import Fernet
 from cryptography.hazmat.primitives.asymmetric import rsa, padding
 from cryptography.hazmat.primitives import serialization, hashes
+import secrets
+
+ALPHABET_LENGTH = 26
+UPPER_A_ASCII = ord('A')
+LOWER_A_ASCII = ord('a')
+ASCII_PRINTABLE_START = 33
+ASCII_PRINTABLE_END = 126
 
 def caesar_cipher(text, shift):
     result = ""
@@ -103,7 +110,7 @@ def show_menu():
     print("-"*33)
 
 
-key = b'Insert 32-byte secret key here'
+key = generate_32_byte_secret_key() # or input your own 32 byte secret key
 
 while True:
     show_menu()
