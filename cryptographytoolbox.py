@@ -109,8 +109,12 @@ def show_menu():
     print("| 8. Exit\t\t\t|")
     print("-"*33)
 
+def generate_32_byte_secret_key():
+    return secrets.token_urlsafe(32)
+
 
 key = generate_32_byte_secret_key() # or input your own 32 byte secret key
+
 
 while True:
     show_menu()
