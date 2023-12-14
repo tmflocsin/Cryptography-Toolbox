@@ -52,7 +52,6 @@ def vigenere_cipher(text, key):
 def rot13_cipher(text):
     return text.encode('rot13')
 
-
 def rot47_cipher(text):
     result = ""
     for char in text:
@@ -112,9 +111,7 @@ def show_menu():
 def generate_32_byte_secret_key():
     return secrets.token_urlsafe(32)
 
-
 key = generate_32_byte_secret_key() # or input your own 32 byte secret key
-
 
 while True:
     show_menu()
@@ -142,8 +139,7 @@ while True:
         encrypted = vigenere_cipher(text, key)
         decrypted = vigenere_cipher(encrypted, key)
         print("Encrypted text:", encrypted)
-        print("Decrypted text:", decrypted)
-        
+        print("Decrypted text:", decrypted)  
         
     elif choice == "4":
         text = input("Enter the text to encrypt/decrypt: ")
