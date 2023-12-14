@@ -22,7 +22,12 @@ def save_to_file(result, file_name):
 class EncryptionApp:
     def __init__(self, master):
         self.master = master
-        master.title("Encryption Toolbox")
+        master.title("Cute Encryption Toolbox")
+
+        style = ttk.Style()
+        style.configure("TFrame", background="#FFE4E1")
+        style.configure("TLabel", background="#FFE4E1", font=('Arial', 12))
+        style.configure("TButton", background="#FFD700", font=('Arial', 12))
 
         self.tabControl = ttk.Notebook(master)
 
@@ -41,26 +46,29 @@ class EncryptionApp:
         # self.create_vigenere_tab()  # Add this function for Vigenere Cipher
 
     def create_caesar_tab(self):
-        label = tk.Label(self.caesar_tab, text="Enter the message:")
-        label.pack()
+        frame = ttk.Frame(self.caesar_tab, style="TFrame")
+        frame.pack(padx=20, pady=20)
 
-        self.caesar_input = tk.Entry(self.caesar_tab)
-        self.caesar_input.pack()
+        label = ttk.Label(frame, text="Enter the message:", style="TLabel")
+        label.grid(row=0, column=0, pady=5)
 
-        label = tk.Label(self.caesar_tab, text="Enter the shift value:")
-        label.pack()
+        self.caesar_input = ttk.Entry(frame, font=('Arial', 12))
+        self.caesar_input.grid(row=0, column=1, pady=5)
 
-        self.caesar_shift = tk.Entry(self.caesar_tab)
-        self.caesar_shift.pack()
+        label = ttk.Label(frame, text="Enter the shift value:", style="TLabel")
+        label.grid(row=1, column=0, pady=5)
 
-        encrypt_button = tk.Button(self.caesar_tab, text="Encrypt", command=self.caesar_encrypt)
-        encrypt_button.pack()
+        self.caesar_shift = ttk.Entry(frame, font=('Arial', 12))
+        self.caesar_shift.grid(row=1, column=1, pady=5)
 
-        decrypt_button = tk.Button(self.caesar_tab, text="Decrypt", command=self.caesar_decrypt)
-        decrypt_button.pack()
+        encrypt_button = ttk.Button(frame, text="Encrypt", command=self.caesar_encrypt, style="TButton")
+        encrypt_button.grid(row=2, column=0, columnspan=2, pady=10)
 
-        self.caesar_result_label = tk.Label(self.caesar_tab, text="")
-        self.caesar_result_label.pack()
+        decrypt_button = ttk.Button(frame, text="Decrypt", command=self.caesar_decrypt, style="TButton")
+        decrypt_button.grid(row=3, column=0, columnspan=2, pady=10)
+
+        self.caesar_result_label = ttk.Label(frame, text="", style="TLabel")
+        self.caesar_result_label.grid(row=4, column=0, columnspan=2, pady=10)
 
     def caesar_encrypt(self):
         input_text = self.caesar_input.get()
